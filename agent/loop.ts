@@ -522,6 +522,7 @@ async function startSession(request: AgentRequest): Promise<WirSession> {
         expectedAction: request.task.expectedAction,
       });
       session.noteInstruction(request.task.instruction);
+      await session.goto(request.task.startUrl);
       return session;
     }
     const session = await WirSession.start({
