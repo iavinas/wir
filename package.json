@@ -1,0 +1,27 @@
+{
+  "name": "@wir/agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/agent/main.js",
+  "scripts": {
+    "build:core": "tsc -p wir-core/tsconfig.json",
+    "build": "npm run build:core && tsc -p tsconfig.json",
+    "test:core": "npm --prefix wir-core test",
+    "test:agent": "rm -rf dist-test && npm run build && tsc -p tsconfig.test.json && node --test dist-test/test/*.test.js",
+    "test": "npm run test:core && npm run test:agent"
+  },
+  "dependencies": {
+    "@wir/core": "file:./wir-core",
+    "@langfuse/otel": "^5.10.0",
+    "@langfuse/tracing": "^5.10.0",
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/resources": "^2.0.1",
+    "@opentelemetry/sdk-trace-node": "^2.0.1",
+    "playwright": "1.61.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,4 @@
+[submodule "wir-core"]
+	path = wir-core
+	url = git@github.com:iavinas/wir-core.git
+	branch = main
