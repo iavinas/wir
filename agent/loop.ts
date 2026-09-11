@@ -80,6 +80,8 @@ export interface AgentRequest {
   };
   browser: {
     headless: boolean; harPath: string; tracePath: string;
+    /** Existing browser CDP endpoint. When set, attach instead of launching Playwright Chromium. */
+    cdpEndpoint?: string;
     /** Debug plane, optional: the runner may ask for the page's final
      *  rendered state to be written here on close. */
     finalStatePath?: string | null;
@@ -514,6 +516,14 @@ function estimateCost(metrics: Metrics): number | null {
 
 async function startSession(request: AgentRequest): Promise<WirSession> {
   try {
+    if (request.browser.cdpEndpoint !== undefined) {
+      const session = await WirSession.attach({
+        cdpEndpoint: request.browser.cdpEndpoint,
+        expectedAction: request.task.expectedAction,
+      });
+      session.noteInstruction(request.task.instruction);
+      return session;
+    }
     const session = await WirSession.start({
       headless: request.browser.headless,
       expectedAction: request.task.expectedAction,
