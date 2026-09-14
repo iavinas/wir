@@ -37,4 +37,4 @@ on string-match tasks (either ruler).
 | added by Claude Opus 5 | 142 |
 | **solved** | **621 / 798 = 77.82%** |
 
-Raw per-step trajectories for every task are available to the WebArena team.
+Raw per-step trajectories for every task are available here https://drive.google.com/file/d/1bbl-d5pN-GTb3ZRn3xFfAwjdSWgsMK8u/view?usp=drive_link.
